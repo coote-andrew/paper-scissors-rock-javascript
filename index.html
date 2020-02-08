@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+</body>
+<script>
+    let totalScore = 0;
+    function computerPlay(){
+        let choice = Math.floor(Math.random()*3)
+        console.log(choice);
+        switch (choice){
+            case 0:
+                return "scissors";
+                break;
+            case 1: 
+                return "rock";
+                break;
+            case 2:
+                return "paper";
+                break;      
+        }
+    }
+    function playerTurn(){
+        let raw = prompt("What would you like to play?");
+            return raw.toLowerCase();
+    }
+
+    function playRound(){
+            let playerSelection = playerTurn();
+            let computerSelection = computerPlay();
+            if (playerSelection == computerSelection ){
+                document.getElementById("p1").innerHTML =  document.getElementById("p1").textContent + `You draw. You both chose ${computerSelection}`; 
+            } else if ((playerSelection == "scissors" && computerSelection == "paper")||(playerSelection == "paper" && computerSelection == "rock")||(playerSelection == "rock" && computerSelection == "scissors") ){
+                document.getElementById("p1").innerHTML =  document.getElementById("p1").textContent + `You win. You beat ${computerSelection} with your ${playerSelection}`;
+                totalScore = totalScore +1;
+            } else {
+                document.getElementById("p1").innerHTML =  document.getElementById("p1").textContent +  `You lose. You lost to ${computerSelection} with your ${playerSelection}`;
+                totalScore = totalScore -1;
+            }
+    }
+
+playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+document.getElementById("p2").innerHTML = `Total score = ${totalScore}`
+</script>
